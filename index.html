@@ -30,6 +30,20 @@ function cutCake(){document.getElementById('cakeObj').classList.add('cut');docum
 function confetti(){let c=document.getElementById('confetti');for(let i=0;i<70;i++){let p=document.createElement('i');p.className='piece';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*.8+'s';p.style.background=['#e45b91','#8c78b8','#f1b56b','#78a8a8'][i%4];c.appendChild(p);setTimeout(()=>p.remove(),3800)}}
 let ac;function music(){if(ac){ac.resume();return}ac=new (window.AudioContext||window.webkitAudioContext)();let notes=[261.63,329.63,392,523.25,392,329.63,293.66,349.23,440,523.25];let t=ac.currentTime;notes.forEach((n,i)=>{let o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=n;g.gain.setValueAtTime(0,t+i*.42);g.gain.exponentialRampToValueAtTime(.001,t+i*.42+.36);o.connect(g);g.connect(ac.destination);o.start(t+i*.42);o.stop(t+i*.42+.38)})}
 </script><script>
+  <audio id="birthdayMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("birthdayMusic");
+
+function playMusic() {
+    music.play().catch(() => {});
+}
+</script>
+  <audio id="birthdayMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 const music=document.getElementById("bgMusic");
 function startMusic(){music.volume=.55; music.play().catch(()=>{});}
 function toggleMusic(){if(music.paused){startMusic()}else{music.pause()}}
